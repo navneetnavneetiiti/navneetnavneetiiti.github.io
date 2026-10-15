@@ -84,3 +84,45 @@ if (collabSection) {
     if (!countryNode(event.relatedTarget)) setActiveCountry(null);
   });
 }
+
+const lightbox = document.querySelector('.lightbox');
+const galleryItems = [...document.querySelectorAll('.gal-item')];
+if (lightbox && galleryItems.length && typeof lightbox.showModal === 'function') {
+  const photo = lightbox.querySelector('.lightbox-stage img');
+  const title = lightbox.querySelector('.lightbox-title');
+  const meta = lightbox.querySelector('.lightbox-meta');
+  const count = lightbox.querySelector('.lightbox-count');
+  const text = lightbox.querySelector('.lightbox-text');
+  let current = 0;
+
+  const show = (index) => {
+    current = (index + galleryItems.length) % galleryItems.length;
+    const item = galleryItems[current];
+    photo.src = item.querySelector('.gal-link').href;
+    photo.alt = item.querySelector('img').alt;
+    title.textContent = item.querySelector('.gal-title').textContent;
+    meta.textContent = item.querySelector('.gal-meta').textContent;
+    count.textContent = `${current + 1} / ${galleryItems.length}`;
+    text.innerHTML = item.querySelector('.gal-full').innerHTML;
+  };
+
+  galleryItems.forEach((item, index) => {
+    item.querySelector('.gal-link').addEventListener('click', (event) => {
+      event.preventDefault();
+      show(index);
+      lightbox.showModal();
+    });
+  });
+
+  lightbox.querySelector('.lightbox-prev').addEventListener('click', () => show(current - 1));
+  lightbox.querySelector('.lightbox-next').addEventListener('click', () => show(current + 1));
+  lightbox.querySelector('.lightbox-close').addEventListener('click', () => lightbox.close());
+  lightbox.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') show(current - 1);
+    if (event.key === 'ArrowRight') show(current + 1);
+  });
+  // a click on the dimmed backdrop lands on the dialog element itself
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
+}
