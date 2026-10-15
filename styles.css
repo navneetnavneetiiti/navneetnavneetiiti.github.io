@@ -176,16 +176,21 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 .date-badge { flex: none; padding: 3px 10px; border-radius: 999px; background: #f5eded; color: var(--red); font-size: .75rem; font-weight: 600; line-height: 1.5; white-space: nowrap; }
 .cv-icon-item { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; column-gap: 14px; }
 .cv-icon { width: 20px; height: 20px; margin-top: 1px; color: var(--red); }
+.cv-logo-item { grid-template-columns: 44px minmax(0, 1fr) auto; }
+.cv-logo { width: 44px; height: 44px; margin-top: 0; padding: 4px; box-sizing: border-box; border: 1px solid #e6e9eb; border-radius: 8px; background: #fff; object-fit: contain; }
 .rank-badge { font-family: var(--serif); color: var(--red); font-size: 1.6rem; line-height: 1; white-space: nowrap; }
 .rank-badge small { font-family: var(--sans); font-size: .62rem; font-weight: 600; letter-spacing: .14em; vertical-align: middle; margin-right: 2px; }
 .rank-badge abbr { text-decoration: none; }
-.cv-timeline .cv-item { position: relative; padding-left: 54px; border-bottom: 0; }
+.cv-timeline .cv-item { position: relative; padding-left: 62px; border-bottom: 0; }
 .cv-timeline .cv-item:hover { box-shadow: none; }
-.cv-timeline .cv-item::before { content: ''; position: absolute; left: 24px; top: 21px; width: 12px; height: 12px; border-radius: 50%; background: var(--red); border: 2px solid #fff; box-shadow: 0 0 0 2px var(--red); box-sizing: border-box; z-index: 1; }
-.cv-timeline .cv-item::after { content: ''; position: absolute; left: 29px; top: 27px; width: 2px; height: 100%; background: #ead9d9; }
+.cv-timeline .cv-item::before { content: ''; position: absolute; left: 28px; top: 21px; width: 12px; height: 12px; border-radius: 50%; background: var(--red); border: 2px solid #fff; box-shadow: 0 0 0 2px var(--red); box-sizing: border-box; z-index: 1; }
+.cv-timeline .cv-item::after { content: ''; position: absolute; left: 33px; top: 27px; width: 2px; height: 100%; background: #ead9d9; }
 .cv-timeline .cv-item:last-child::after { display: none; }
 .cv-timeline .cv-item:hover::before { background: #fff; }
-@media (min-width: 761px) and (max-width: 975px), (max-width: 479px) { .cv-item { flex-direction: column; gap: 6px; } .date-badge { order: -1; } .cv-timeline .cv-item::before { top: 23px; } .cv-timeline .cv-item::after { top: 29px; } .cv-icon-item { grid-template-columns: 20px minmax(0, 1fr); column-gap: 12px; } .cv-icon-item .cv-icon { grid-row: 1 / span 2; } .cv-icon-item .date-badge, .cv-icon-item .rank-badge { grid-column: 2; grid-row: 1; justify-self: start; } .cv-icon-item > div { grid-column: 2; grid-row: 2; } }
+.cv-tl-logo { position: absolute; left: 16px; top: 9px; width: 36px; height: 36px; padding: 2px; box-sizing: border-box; border: 1px solid #e3d2d2; border-radius: 50%; background: #fff; object-fit: contain; z-index: 2; opacity: 0; transform: scale(.35); pointer-events: none; transition: opacity .25s ease, transform .25s ease; } /* grows out of the dot on hover, focus or tap */
+.cv-timeline .cv-item.is-active .cv-tl-logo, .cv-timeline .cv-item:focus-within .cv-tl-logo { opacity: 1; transform: none; }
+@media (hover: hover) { .cv-timeline .cv-item:hover .cv-tl-logo { opacity: 1; transform: none; } }
+@media (min-width: 761px) and (max-width: 975px), (max-width: 479px) { .cv-item { flex-direction: column; gap: 6px; } .date-badge { order: -1; } .cv-timeline .cv-item::before { top: 23px; } .cv-timeline .cv-item::after { top: 29px; } .cv-tl-logo { top: 11px; } .cv-icon-item { grid-template-columns: 20px minmax(0, 1fr); column-gap: 12px; } .cv-logo-item { grid-template-columns: 44px minmax(0, 1fr); } .cv-icon-item .cv-icon { grid-row: 1 / span 2; } .cv-icon-item .date-badge, .cv-icon-item .rank-badge { grid-column: 2; grid-row: 1; justify-self: start; } .cv-icon-item > div { grid-column: 2; grid-row: 2; } }
 .institution-link { transition: color .2s ease; }
 .institution-link span { color: var(--red); font-size: .75em; opacity: .55; transition: opacity .2s ease; }
 .institution-link:hover { color: var(--red); }

@@ -85,6 +85,24 @@ if (collabSection) {
   });
 }
 
+// Experience timeline: mouse hover shows the institute logo via CSS; touch has no hover, so a tap toggles it.
+const timeline = document.querySelector('.cv-timeline');
+if (timeline) {
+  let lastPointerType = 'mouse';
+
+  timeline.addEventListener('pointerdown', (event) => {
+    lastPointerType = event.pointerType;
+  });
+
+  timeline.addEventListener('click', (event) => {
+    if (lastPointerType !== 'touch' || event.target.closest('a')) return;
+    const item = event.target.closest('.cv-item');
+    timeline.querySelectorAll('.cv-item').forEach((node) => {
+      node.classList.toggle('is-active', node === item && !node.classList.contains('is-active'));
+    });
+  });
+}
+
 const lightbox = document.querySelector('.lightbox');
 const galleryItems = [...document.querySelectorAll('.gal-item')];
 if (lightbox && galleryItems.length && typeof lightbox.showModal === 'function') {
