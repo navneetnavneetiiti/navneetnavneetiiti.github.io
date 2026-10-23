@@ -15,6 +15,29 @@ if (menuToggle && siteNav) {
   });
 }
 
+// Night mode: the inline <head> script applies a saved choice before the page paints; the button flips it.
+const themeToggle = document.querySelector('.theme-toggle');
+if (themeToggle) {
+  const root = document.documentElement;
+  const syncToggle = () => {
+    const isDark = root.dataset.theme === 'dark';
+    themeToggle.setAttribute('aria-pressed', String(isDark));
+    themeToggle.title = isDark ? 'Switch to day mode' : 'Switch to night mode';
+  };
+  syncToggle();
+
+  themeToggle.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch (error) {
+      // storage blocked (e.g. private browsing): the switch still works, it just isn't remembered
+    }
+    syncToggle();
+  });
+}
+
 const yearNode = document.querySelector('#year');
 if (yearNode) {
   yearNode.textContent = new Date().getFullYear();
