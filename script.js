@@ -25,6 +25,11 @@ if (profileImage) {
   profileImage.addEventListener('error', () => {
     profileImage.hidden = true;
   });
+
+  // The photo is black-and-white; hover shows colour via CSS, and a click or tap keeps it in colour.
+  profileImage.addEventListener('click', () => {
+    profileImage.parentElement.classList.toggle('is-color');
+  });
 }
 
 const collabSection = document.querySelector('.talk-section');

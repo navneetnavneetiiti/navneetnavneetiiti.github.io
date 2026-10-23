@@ -54,8 +54,11 @@ em { color: var(--red); font-style: italic; }
 .stat-label { margin-top: 6px; color: var(--muted); font-size: .72rem; letter-spacing: .08em; line-height: 1.35; text-transform: uppercase; }
 @media (max-width: 975px) { .stat-item { flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px 18px; } .stat-icon { width: 40px; height: 40px; } .stat-icon svg { width: 20px; height: 20px; } }
 .hero-card { border: 1px solid rgba(17,43,58,.08); padding: 18px 18px 20px; background: rgba(255,255,255,.58); border-radius: 18px; box-shadow: 0 24px 45px rgba(17,43,58,.05); }
-.profile-photo { height: 310px; margin-bottom: 30px; position: relative; overflow: hidden; background: linear-gradient(135deg, #112b3a, #1d3c4d); display: grid; place-items: center; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); border-radius: 12px 12px 0 0; }
-.profile-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 25%; filter: saturate(.96) contrast(1.02); position: relative; z-index: 1; }
+.profile-photo { aspect-ratio: 272 / 310; margin-bottom: 30px; position: relative; overflow: hidden; background: linear-gradient(135deg, #112b3a, #1d3c4d); display: grid; place-items: center; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); border-radius: 12px 12px 0 0; }
+.profile-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 25%; filter: grayscale(1) saturate(.96) contrast(1.02); transition: filter .45s ease; position: relative; z-index: 1; cursor: pointer; }
+/* black-and-white until hovered (mouse) or clicked/tapped (script.js toggles .is-color) */
+.profile-photo.is-color img { filter: grayscale(0) saturate(.96) contrast(1.02); }
+@media (hover: hover) { .profile-photo:hover img { filter: grayscale(0) saturate(.96) contrast(1.02); } }
 .photo-fallback { position: absolute; color: white; font-family: var(--serif); font-size: 5rem; line-height: 1; }
 .card-rule { width: 42px; border-top: 4px solid var(--red); margin-bottom: 28px; }
 .card-label { margin: 0 0 12px; }
