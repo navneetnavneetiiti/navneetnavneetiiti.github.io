@@ -119,6 +119,8 @@ em { color: var(--accent); font-style: italic; }
 .info-card { display: flex; flex-direction: column; background: #fff; border: 1px solid #e6e9eb; border-radius: 6px; box-shadow: 0 2px 8px rgba(17,43,58,.08); overflow: hidden; }
 .info-card-title { display: flex; align-items: center; gap: 10px; margin: 0; padding: 15px 22px; border-bottom: 1px solid #e6e9eb; color: var(--accent); font-size: 1.05rem; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; line-height: 1.2; }
 .info-card-title svg { flex: none; }
+.dated-title .date-badge { order: 0; margin-left: auto; letter-spacing: 0; text-transform: none; } /* one date range for the whole card (Teaching) */
+@media (max-width: 479px) { .dated-title { display: grid; grid-template-columns: auto minmax(0, 1fr); row-gap: 8px; } .dated-title .date-badge { grid-column: 2; justify-self: start; margin-left: 0; } } /* phones: the dates drop under the heading text */
 .intro-body { grid-area: body; contain: size; } /* the interests card sets the row height; the paragraph scrolls inside */
 .card-scroll { flex: 1; min-height: 0; overflow-y: auto; background: linear-gradient(#fff 30%, rgba(255,255,255,0)) center top / 100% 40px no-repeat local, linear-gradient(rgba(255,255,255,0), #fff 70%) center bottom / 100% 40px no-repeat local, radial-gradient(farthest-side at 50% 0, rgba(17,43,58,.14), transparent) center top / 100% 12px no-repeat scroll, radial-gradient(farthest-side at 50% 100%, rgba(17,43,58,.14), transparent) center bottom / 100% 12px no-repeat scroll; }
 .card-scroll:focus-visible { outline: 2px solid var(--navy); outline-offset: -2px; }
