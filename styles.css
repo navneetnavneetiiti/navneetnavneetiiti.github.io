@@ -88,7 +88,7 @@ em { color: var(--accent); font-style: italic; }
 .photo-fallback { position: absolute; color: white; font-family: var(--serif); font-size: 5rem; line-height: 1; }
 .card-rule { width: 42px; border-top: 4px solid var(--accent); margin-bottom: 28px; }
 .card-label { margin: 0 0 12px; }
-.card-title { font-family: var(--serif); font-size: 1.65rem; margin: 0 0 10px; }
+.role-badge { display: inline-block; margin: 0 0 16px; padding: 6px 16px; border: 1px solid #fbd5b0; border-radius: 999px; background: #fff3e6; color: #b8460f; font-size: .8rem; font-weight: 700; letter-spacing: .08em; line-height: 1.4; text-transform: uppercase; } /* pill badge, the one warm accent on the page */
 .card-detail, .muted { color: var(--muted); font-size: .9rem; }
 .hero-card a { display: inline-block; margin-top: 18px; color: var(--accent); font-size: .82rem; }
 .intro-band, .section-tinted { background: linear-gradient(180deg, #eaf2f1 0%, #e6efee 100%); }
@@ -308,6 +308,7 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 [data-theme="dark"] .button-outline { background: var(--card); border-color: rgba(116,211,198,.35); box-shadow: none; }
 [data-theme="dark"] .button-outline:hover, [data-theme="dark"] .button-outline:focus-visible { color: #0e2a27; }
 [data-theme="dark"] .hero-card { background: rgba(21,36,47,.6); border-color: rgba(255,255,255,.06); box-shadow: 0 24px 45px rgba(0,0,0,.25); }
+[data-theme="dark"] .role-badge { background: rgba(246,169,111,.12); border-color: rgba(246,169,111,.35); color: #f6a96f; }
 [data-theme="dark"] .stat-item, [data-theme="dark"] .info-card, [data-theme="dark"] .gal-item { background: var(--card); border-color: var(--card-line); box-shadow: 0 2px 10px rgba(0,0,0,.25); }
 [data-theme="dark"] .stat-item:hover { border-color: rgba(116,211,198,.4); box-shadow: 0 12px 24px rgba(0,0,0,.35); }
 [data-theme="dark"] .gal-item:hover { box-shadow: 0 12px 24px rgba(0,0,0,.35); }
