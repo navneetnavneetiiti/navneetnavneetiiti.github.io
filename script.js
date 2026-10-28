@@ -15,6 +15,43 @@ if (menuToggle && siteNav) {
   });
 }
 
+// Header: slims down once the page is scrolled, and marks the nav link of the section in view.
+const siteHeader = document.querySelector('.site-header');
+if (siteHeader && siteNav) {
+  const navLinks = [...siteNav.querySelectorAll('a[href^="#"]')];
+  const sections = [...document.querySelectorAll('main section[id], footer[id]')];
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+    const y = window.scrollY;
+    // two thresholds, so the header does not flicker while scrolling around one point
+    if (y > 60) siteHeader.classList.add('is-scrolled');
+    else if (y < 10) siteHeader.classList.remove('is-scrolled');
+
+    let current = null;
+    sections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= window.innerHeight * 0.35) current = section.id;
+    });
+    // the footer is short, so at the very bottom it is the one being read
+    if (window.innerHeight + y >= document.documentElement.scrollHeight - 2) current = sections[sections.length - 1].id;
+    navLinks.forEach((link) => {
+      const active = link.getAttribute('href') === `#${current}`;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: true });
+  update();
+}
+
 // Night mode: the inline <head> script applies a saved choice before the page paints; the button flips it.
 const themeToggle = document.querySelector('.theme-toggle');
 if (themeToggle) {
