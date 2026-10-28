@@ -214,3 +214,24 @@ if (upcomingCard) {
   });
   if (!upcomingCard.querySelector('.upcoming-item')) upcomingCard.remove();
 }
+
+// Featured publications: the track scroll-snaps, so swiping just works; the arrows (wrapping round) and dots move it.
+const featured = document.querySelector('.featured-card');
+if (featured) {
+  const track = featured.querySelector('.featured-track');
+  const slideCount = track.children.length;
+  const dots = [...featured.querySelectorAll('.featured-dots button')];
+  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  const current = () => Math.round(track.scrollLeft / track.clientWidth);
+  const go = (index) => {
+    track.scrollTo({ left: ((index + slideCount) % slideCount) * track.clientWidth, behavior });
+  };
+
+  featured.querySelector('.featured-prev').addEventListener('click', () => go(current() - 1));
+  featured.querySelector('.featured-next').addEventListener('click', () => go(current() + 1));
+  dots.forEach((dot, index) => dot.addEventListener('click', () => go(index)));
+  track.addEventListener('scroll', () => {
+    const index = current();
+    dots.forEach((dot, n) => dot.setAttribute('aria-current', String(n === index)));
+  }, { passive: true });
+}
