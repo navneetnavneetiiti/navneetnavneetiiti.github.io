@@ -243,7 +243,7 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 .collab-initials { grid-row: span 2; align-self: center; display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid var(--band-box-line); border-radius: 50%; background: var(--band-circle); color: var(--band-accent); font-size: .82rem; font-weight: 700; letter-spacing: .01em; line-height: 1; transition: background .2s ease, border-color .2s ease, color .2s ease; } /* like the profile icons */
 .collaborator:hover, .collaborator.is-active { border-color: var(--band-accent); transform: translateY(-2px); }
 .collaborator:hover .collab-initials, .collaborator.is-active .collab-initials { background: var(--band-accent); border-color: var(--band-accent); color: var(--band-on-accent); }
-.collaborator h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; line-height: 1.2; margin: 0 0 2px; color: var(--band-head); }
+.collaborator h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; line-height: 1.2; margin: 0 0 2px; color: var(--band-accent); } /* names in teal, like the box outline and initials */
 .collaborator .institution-link span { color: var(--band-accent); }
 .collaborator .institution-link:hover { color: var(--band-accent); }
 .talk-section .talk-grid { grid-template-areas: "places map" "supervisor coauthors"; row-gap: 0; }
