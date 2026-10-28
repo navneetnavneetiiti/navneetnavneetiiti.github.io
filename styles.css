@@ -204,13 +204,14 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 .two-column { display: grid; grid-template-columns: 1fr 1.4fr; gap: 90px; align-items: start; }
 .card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
 .card-wide { grid-column: 1 / -1; }
-.skill-groups { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); }
+.skill-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .skill-group { padding: 16px 22px 18px; }
-.skill-group + .skill-group { border-left: 1px dashed #e3e6e8; }
+.skill-group:first-child { grid-column: 1 / -1; border-bottom: 1px dashed #e3e6e8; } /* the long group spans the card; the two short ones share the row below */
+.skill-group:last-child { border-left: 1px dashed #e3e6e8; }
 .skill-label { margin: 0 0 10px; color: var(--muted); font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .skill-pills li { padding: 5px 14px; border: 1px solid rgba(15,111,104,.28); border-radius: 999px; background: #fff; color: var(--accent); font-size: .82rem; font-weight: 600; line-height: 1.4; } /* same pill as the hero research areas */
-@media (max-width: 760px) { .skill-groups { grid-template-columns: 1fr; } .skill-group + .skill-group { border-left: 0; border-top: 1px dashed #e3e6e8; } }
+@media (max-width: 760px) { .skill-groups { grid-template-columns: 1fr; } .skill-group:last-child { border-left: 0; border-top: 1px dashed #e3e6e8; } }
 .card-stack { display: grid; gap: 32px; }
 .cv-list-split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .cv-list-split .cv-item { border-bottom: 0; }
@@ -326,7 +327,7 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 [data-theme="dark"] .brand-mark { background: linear-gradient(135deg, #24506b, #3a6480 100%); }
 [data-theme="dark"] .lead { background: var(--card); border-color: rgba(116,211,198,.35); box-shadow: none; color: #b3c0c7; }
 [data-theme="dark"] .hero-tags li, [data-theme="dark"] .skill-pills li { background: var(--card); border-color: rgba(116,211,198,.35); }
-[data-theme="dark"] .skill-group + .skill-group { border-color: var(--dash); }
+[data-theme="dark"] .skill-group { border-color: var(--dash); }
 [data-theme="dark"] .status-dot { animation-name: status-pulse-dark; }
 @keyframes status-pulse-dark { 0% { box-shadow: 0 0 0 0 rgba(116,211,198,.45); } 70% { box-shadow: 0 0 0 9px rgba(116,211,198,0); } 100% { box-shadow: 0 0 0 0 rgba(116,211,198,0); } }
 [data-theme="dark"] .profile-icon { background: var(--card); border-color: rgba(116,211,198,.35); box-shadow: none; }
