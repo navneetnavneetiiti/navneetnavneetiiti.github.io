@@ -195,9 +195,9 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 .pub-status { color: var(--muted); }
 .section-intro { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: end; gap: 24px 80px; }
 .section-intro h2 { margin-bottom: 0; }
-.section-lede { max-width: 500px; justify-self: end; }
-.section-lede p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.75; }
-.section-lede .text-link { margin-left: 4px; white-space: nowrap; }
+.section-lede { max-width: 500px; justify-self: end; padding: 16px 22px; border: 1px solid rgba(15,111,104,.28); border-radius: 14px; background: #fff; box-shadow: 0 2px 6px rgba(17,43,58,.06); } /* boxed like the hero buttons */
+.section-lede p { margin: 0; color: var(--accent); font-size: 1rem; font-weight: 500; line-height: 1.75; text-wrap: pretty; } /* pretty: no single word left alone on the last line */
+.section-lede .text-link { margin-left: 4px; white-space: nowrap; color: var(--accent); }
 @media (max-width: 760px) { .section-intro { grid-template-columns: 1fr; } .section-lede { justify-self: start; } }
 .section-note { color: var(--muted); max-width: 260px; font-size: .9rem; margin: 0 0 12px; }
 .event-label { color: var(--accent); font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; font-weight: 600; margin: 0 0 18px; }
@@ -269,7 +269,6 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 .collaborator .institution-link span { color: var(--band-accent); }
 .collaborator .institution-link:hover { color: var(--band-accent); }
 .talk-section .talk-grid { grid-template-areas: "places map" "supervisor coauthors"; row-gap: 0; }
-.talk-section .section-lede p { color: var(--band-text); }
 .collab-places { grid-area: places; align-self: stretch; display: flex; flex-direction: column; }
 .talk-section .collab-places, .talk-section .collab-map { border-top: 1px solid var(--band-rule); border-bottom: 1px solid var(--band-rule); }
 .talk-section .collab-places { padding: 26px 0 20px; }
@@ -327,6 +326,7 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 [data-theme="dark"] .brand-mark { background: linear-gradient(135deg, #24506b, #3a6480 100%); }
 [data-theme="dark"] .lead { background: var(--card); border-color: rgba(116,211,198,.35); box-shadow: none; color: #b3c0c7; }
 [data-theme="dark"] .hero-tags li, [data-theme="dark"] .skill-pills li { background: var(--card); border-color: rgba(116,211,198,.35); }
+[data-theme="dark"] .section-lede { background: var(--card); border-color: rgba(116,211,198,.35); box-shadow: none; }
 [data-theme="dark"] .skill-group { border-color: var(--dash); }
 [data-theme="dark"] .status-dot { animation-name: status-pulse-dark; }
 @keyframes status-pulse-dark { 0% { box-shadow: 0 0 0 0 rgba(116,211,198,.45); } 70% { box-shadow: 0 0 0 9px rgba(116,211,198,0); } 100% { box-shadow: 0 0 0 0 rgba(116,211,198,0); } }
