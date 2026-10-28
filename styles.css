@@ -38,13 +38,10 @@ h1 { font-size: clamp(3.4rem, 6vw, 6rem); letter-spacing: -.045em; text-wrap: ba
 h2 { font-size: clamp(2.5rem, 4vw, 4rem); letter-spacing: -.03em; }
 h2.one-line em { white-space: nowrap; } /* on narrow screens, break before the italic phrase */
 em { color: var(--accent); font-style: italic; }
-.lead { max-width: 560px; font-size: 1.2rem; line-height: 1.65; color: #46525b; }
+.lead { max-width: 560px; padding: 14px 20px; border: 1px solid rgba(15,111,104,.28); border-radius: 14px; background: #fff; box-shadow: 0 2px 6px rgba(17,43,58,.06); font-size: 1.12rem; line-height: 1.65; color: #46525b; } /* boxed like the research pills above */
 .lead-em { color: var(--accent); font-weight: 600; }
 .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; } /* research areas as pills, like the buttons below */
 .hero-tags li { padding: 5px 12px; border: 1px solid rgba(15,111,104,.28); border-radius: 999px; background: #fff; color: var(--accent); font-size: .7rem; font-weight: 700; letter-spacing: .1em; line-height: 1.4; text-transform: uppercase; }
-.hero-formula { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin: 22px 0 0; padding-left: 16px; border-left: 3px solid var(--accent); }
-.hero-math { color: var(--ink); font-family: 'STIX Two Math', 'Cambria Math', math; font-size: 1.5rem; } /* MathML, so the browser spaces it like LaTeX */
-.hero-formula-note { color: var(--muted); font-size: .8rem; font-style: italic; }
 .hero-status { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; color: var(--muted); font-size: .85rem; transition: color .2s ease; }
 .hero-status:hover, .hero-status:focus-visible { color: var(--accent); }
 .status-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: status-pulse 2.2s ease-out infinite; }
@@ -323,7 +320,7 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 [data-theme="dark"] .site-nav a:hover, [data-theme="dark"] .site-nav a.is-active { background: rgba(255,255,255,.1); color: #f6a96f; box-shadow: none; }
 @media (max-width: 1180px) { [data-theme="dark"] .site-nav { background: #0f1b24; border-bottom-color: rgba(255,255,255,.06); } }
 [data-theme="dark"] .brand-mark { background: linear-gradient(135deg, #24506b, #3a6480 100%); }
-[data-theme="dark"] .lead { color: #b3c0c7; }
+[data-theme="dark"] .lead { background: var(--card); border-color: rgba(116,211,198,.35); box-shadow: none; color: #b3c0c7; }
 [data-theme="dark"] .hero-tags li { background: var(--card); border-color: rgba(116,211,198,.35); }
 [data-theme="dark"] .status-dot { animation-name: status-pulse-dark; }
 @keyframes status-pulse-dark { 0% { box-shadow: 0 0 0 0 rgba(116,211,198,.45); } 70% { box-shadow: 0 0 0 9px rgba(116,211,198,0); } 100% { box-shadow: 0 0 0 0 rgba(116,211,198,0); } }
