@@ -42,8 +42,8 @@ em { color: var(--accent); font-style: italic; }
 .lead-em { color: var(--accent); font-weight: 600; }
 .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; } /* research areas as pills, like the buttons below */
 .hero-tags li { padding: 5px 12px; border: 1px solid rgba(15,111,104,.28); border-radius: 999px; background: #fff; color: var(--accent); font-size: .7rem; font-weight: 700; letter-spacing: .1em; line-height: 1.4; text-transform: uppercase; }
-.hero-status { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; color: var(--muted); font-size: .85rem; transition: color .2s ease; }
-.hero-status:hover, .hero-status:focus-visible { color: var(--accent); }
+.hero-status { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; padding: 7px 16px 7px 12px; border: 1px solid rgba(15,111,104,.18); border-radius: 999px; background: #e1f1ee; color: var(--accent); font-size: .82rem; font-weight: 600; transition: background .2s ease, border-color .2s ease, transform .2s ease; } /* status capsule in the date-badge teal, so it does not read as a fourth button */
+.hero-status:hover, .hero-status:focus-visible { border-color: var(--accent); transform: translateY(-2px); outline: none; }
 .status-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: status-pulse 2.2s ease-out infinite; }
 @keyframes status-pulse { 0% { box-shadow: 0 0 0 0 rgba(15,111,104,.45); } 70% { box-shadow: 0 0 0 9px rgba(15,111,104,0); } 100% { box-shadow: 0 0 0 0 rgba(15,111,104,0); } }
 @media (prefers-reduced-motion: reduce) { .status-dot { animation: none; } }
@@ -328,6 +328,7 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 [data-theme="dark"] .hero-tags li, [data-theme="dark"] .skill-pills li { background: var(--card); border-color: rgba(116,211,198,.35); }
 [data-theme="dark"] .section-lede { background: var(--card); border-color: rgba(116,211,198,.35); box-shadow: none; }
 [data-theme="dark"] .skill-group { border-color: var(--dash); }
+[data-theme="dark"] .hero-status { background: rgba(116,211,198,.13); border-color: rgba(116,211,198,.25); }
 [data-theme="dark"] .status-dot { animation-name: status-pulse-dark; }
 @keyframes status-pulse-dark { 0% { box-shadow: 0 0 0 0 rgba(116,211,198,.45); } 70% { box-shadow: 0 0 0 9px rgba(116,211,198,0); } 100% { box-shadow: 0 0 0 0 rgba(116,211,198,0); } }
 [data-theme="dark"] .profile-icon { background: var(--card); border-color: rgba(116,211,198,.35); box-shadow: none; }
