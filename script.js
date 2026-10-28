@@ -172,3 +172,13 @@ if (lightbox && galleryItems.length && typeof lightbox.showModal === 'function')
     if (event.target === lightbox) lightbox.close();
   });
 }
+
+// upcoming talks drop off the page the day after they end; the card goes once none are left
+const upcomingCard = document.querySelector('.upcoming-card');
+if (upcomingCard) {
+  const today = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD in the visitor's time zone
+  upcomingCard.querySelectorAll('.upcoming-item').forEach((item) => {
+    if (item.dataset.until < today) item.remove();
+  });
+  if (!upcomingCard.querySelector('.upcoming-item')) upcomingCard.remove();
+}
