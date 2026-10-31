@@ -62,7 +62,6 @@ if (siteHeader && siteNav) {
       if (active) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     });
-    navMoreToggle?.classList.toggle('has-active', Boolean(navMore.querySelector('a.is-active')));
   };
 
   window.addEventListener('scroll', () => {
