@@ -203,6 +203,45 @@ if (lightbox && galleryItems.length && typeof lightbox.showModal === 'function')
   lightbox.addEventListener('click', (event) => {
     if (event.target === lightbox) lightbox.close();
   });
+  // touch: swipe the photo left for the next one, right for the previous (CSS hands horizontal pans to us)
+  const stage = lightbox.querySelector('.lightbox-stage');
+  let swipeStart = null;
+  stage.addEventListener('pointerdown', (event) => {
+    swipeStart = event.pointerType === 'mouse' || event.target.closest('button') ? null : { x: event.clientX, y: event.clientY };
+  });
+  stage.addEventListener('pointerup', (event) => {
+    if (!swipeStart) return;
+    const dx = event.clientX - swipeStart.x;
+    const dy = event.clientY - swipeStart.y;
+    swipeStart = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(dx < 0 ? current + 1 : current - 1);
+  });
+  stage.addEventListener('pointercancel', () => { swipeStart = null; });
+}
+
+// Gallery: CSS shows 3 full rows (12 photos, or 6 at two columns) until "Show all"; the lightbox still steps through every photo.
+const galleryGrid = document.querySelector('.gallery-grid');
+const galleryMore = document.querySelector('.gallery-more');
+if (galleryGrid && galleryMore) {
+  const moreButton = galleryMore.querySelector('button');
+  const twoColumns = window.matchMedia('(max-width: 975px)');
+  const total = galleryGrid.querySelectorAll('.gal-item').length;
+  const update = () => {
+    const collapsed = galleryGrid.classList.contains('is-collapsed');
+    galleryMore.hidden = total <= (twoColumns.matches ? 6 : 12);
+    moreButton.textContent = collapsed ? `Show all ${total} photos` : 'Show fewer photos';
+    moreButton.setAttribute('aria-expanded', String(!collapsed));
+  };
+
+  galleryGrid.classList.add('is-collapsed');
+  update();
+  twoColumns.addEventListener('change', update);
+  moreButton.addEventListener('click', () => {
+    galleryGrid.classList.toggle('is-collapsed');
+    update();
+    // after collapsing, keep the button where the reader is instead of leaving them far below the gallery
+    if (galleryGrid.classList.contains('is-collapsed')) galleryMore.scrollIntoView({ block: 'center' });
+  });
 }
 
 // upcoming talks drop off the page the day after they end; the card goes once none are left
