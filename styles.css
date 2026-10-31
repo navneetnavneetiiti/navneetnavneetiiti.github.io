@@ -22,13 +22,21 @@ a { color: inherit; text-decoration: none; }
 .site-nav a { padding: 8px 13px; border-radius: 999px; white-space: nowrap; transition: background .2s ease, color .2s ease, box-shadow .2s ease; }
 .site-nav a:hover, .site-nav a.is-active { background: #fff; color: #b8460f; box-shadow: 0 2px 6px rgba(0,0,0,.06); } /* is-active marks the section in view (script.js) */
 .social-links a:hover, .text-link:hover, .footer-contact .email:hover { color: var(--accent); }
+.nav-more { position: relative; display: flex; margin-left: 4px; } /* ≡ at the end of the pill opens Teaching, Contact, CV, like the IIT Indore lab site */
+.nav-more-toggle { display: grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: #fff; color: #b8460f; box-shadow: 0 2px 6px rgba(0,0,0,.08); cursor: pointer; transition: background .2s ease, box-shadow .2s ease; }
+.nav-more-toggle:hover, .nav-more-toggle:focus-visible, .nav-more.is-open .nav-more-toggle, .nav-more-toggle.has-active { background: #fff3e6; box-shadow: 0 0 0 1px #fbd5b0, 0 2px 6px rgba(0,0,0,.08); outline: none; } /* has-active: the section in view is one of the menu's */
+.nav-more-menu { display: none; position: absolute; top: calc(100% + 14px); right: 0; min-width: 190px; flex-direction: column; overflow: hidden; border: 1px solid #eef1f4; border-radius: 12px; background: #fff; box-shadow: 0 14px 34px rgba(15,23,42,.14); }
+.nav-more.is-open .nav-more-menu { display: flex; }
+.site-nav .nav-more-menu a { padding: 15px 22px; border-radius: 0; border-bottom: 1px solid #eef1f4; box-shadow: none; }
+.site-nav .nav-more-menu a:last-child { border-bottom: 0; }
+.site-nav .nav-more-menu a:hover, .site-nav .nav-more-menu a.is-active { background: #fff8f1; box-shadow: none; }
 .menu-toggle { display: none; background: none; border: 0; font: inherit; font-weight: 700; color: var(--navy); cursor: pointer; }
 .theme-toggle { flex: none; display: inline-grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--navy); cursor: pointer; transition: color .2s ease, border-color .2s ease; }
 .theme-toggle:hover, .theme-toggle:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
 .theme-toggle svg { width: 17px; height: 17px; }
 .theme-toggle .icon-moon, [data-theme="dark"] .theme-toggle .icon-sun { display: none; } /* the icon shows the current mode */
 [data-theme="dark"] .theme-toggle .icon-moon { display: block; }
-@media (max-width: 1180px) { .theme-toggle { margin-left: auto; } .menu-toggle { display: block; order: 1; } .site-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; padding: 12px 20px 16px; border-radius: 0; border-bottom: 1px solid #f1e3d0; background: #fff6eb; flex-direction: column; align-items: stretch; gap: 4px; } .site-nav.is-open { display: flex; } } /* the links fold into the Menu button when the row would not fit */
+@media (max-width: 1180px) { .theme-toggle { margin-left: auto; } .menu-toggle { display: block; order: 1; } .site-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; padding: 12px 20px 16px; border-radius: 0; border-bottom: 1px solid #f1e3d0; background: #fff6eb; flex-direction: column; align-items: stretch; gap: 4px; } .site-nav.is-open { display: flex; } .nav-more, .nav-more-menu, .nav-more.is-open .nav-more-menu { display: contents; } .nav-more-toggle { display: none; } .site-nav .nav-more-menu a { padding: 8px 13px; border: 0; border-radius: 999px; } .site-nav .nav-more-menu a:hover, .site-nav .nav-more-menu a.is-active { background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.06); } } /* the links fold into the Menu button when the row would not fit */
 @media (max-width: 760px) { .header-inner { min-height: 64px; gap: 16px; } .brand-mark { width: 38px; height: 38px; } .brand-name { font-size: 1.15rem; } }
 @media (max-width: 479px) { .brand-sub { display: none; } }
 .hero { min-height: 620px; padding-top: 96px; padding-bottom: 96px; display: grid; grid-template-columns: 1fr 310px; align-items: center; gap: 76px; }
@@ -359,7 +367,12 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 [data-theme="dark"] .site-header { background: rgba(15,27,36,.88); border-bottom-color: rgba(255,255,255,.06); box-shadow: none; }
 [data-theme="dark"] .site-nav { background: rgba(255,255,255,.06); color: #c3cdd3; }
 [data-theme="dark"] .site-nav a:hover, [data-theme="dark"] .site-nav a.is-active { background: rgba(255,255,255,.1); color: #f6a96f; box-shadow: none; }
-@media (max-width: 1180px) { [data-theme="dark"] .site-nav { background: #0f1b24; border-bottom-color: rgba(255,255,255,.06); } }
+[data-theme="dark"] .nav-more-toggle { background: rgba(255,255,255,.1); color: #f6a96f; box-shadow: none; }
+[data-theme="dark"] .nav-more-toggle:hover, [data-theme="dark"] .nav-more-toggle:focus-visible, [data-theme="dark"] .nav-more.is-open .nav-more-toggle, [data-theme="dark"] .nav-more-toggle.has-active { background: rgba(246,169,111,.16); box-shadow: 0 0 0 1px rgba(246,169,111,.35); }
+[data-theme="dark"] .nav-more-menu { border-color: var(--card-line); background: var(--card); box-shadow: 0 14px 34px rgba(0,0,0,.4); }
+[data-theme="dark"] .site-nav .nav-more-menu a { border-bottom-color: var(--card-line); }
+[data-theme="dark"] .site-nav .nav-more-menu a:hover, [data-theme="dark"] .site-nav .nav-more-menu a.is-active { background: rgba(255,255,255,.06); }
+@media (max-width: 1180px) { [data-theme="dark"] .site-nav { background: #0f1b24; border-bottom-color: rgba(255,255,255,.06); } [data-theme="dark"] .site-nav .nav-more-menu a:hover, [data-theme="dark"] .site-nav .nav-more-menu a.is-active { background: rgba(255,255,255,.1); box-shadow: none; } }
 [data-theme="dark"] .brand-mark { background: linear-gradient(135deg, #24506b, #3a6480 100%); }
 [data-theme="dark"] .lead { background: var(--card); border-color: rgba(116,211,198,.35); border-left-color: var(--accent); box-shadow: none; color: #b3c0c7; }
 [data-theme="dark"] .hero-tags li, [data-theme="dark"] .skill-pills li { background: var(--card); border-color: rgba(116,211,198,.35); }

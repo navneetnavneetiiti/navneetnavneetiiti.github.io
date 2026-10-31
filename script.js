@@ -15,6 +15,27 @@ if (menuToggle && siteNav) {
   });
 }
 
+// Desktop ≡ menu (Teaching, Contact, CV); at ≤1180px CSS lists these links in the Menu panel instead.
+const navMore = document.querySelector('.nav-more');
+const navMoreToggle = document.querySelector('.nav-more-toggle');
+if (navMore && navMoreToggle) {
+  const setMoreOpen = (open) => {
+    navMore.classList.toggle('is-open', open);
+    navMoreToggle.setAttribute('aria-expanded', String(open));
+  };
+  navMoreToggle.addEventListener('click', () => setMoreOpen(!navMore.classList.contains('is-open')));
+  navMore.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMoreOpen(false)));
+  document.addEventListener('click', (event) => {
+    if (!navMore.contains(event.target)) setMoreOpen(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navMore.classList.contains('is-open')) {
+      setMoreOpen(false);
+      navMoreToggle.focus();
+    }
+  });
+}
+
 // Header: slims down once the page is scrolled, and marks the nav link of the section in view.
 const siteHeader = document.querySelector('.site-header');
 if (siteHeader && siteNav) {
@@ -41,6 +62,7 @@ if (siteHeader && siteNav) {
       if (active) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     });
+    navMoreToggle?.classList.toggle('has-active', Boolean(navMore.querySelector('a.is-active')));
   };
 
   window.addEventListener('scroll', () => {
