@@ -40,7 +40,7 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 760px) { .header-inner { min-height: 64px; gap: 16px; } .brand-mark { width: 38px; height: 38px; } .brand-name { font-size: 1.15rem; } }
 @media (max-width: 479px) { .brand-sub { display: none; } }
 .hero { min-height: 620px; padding-top: 96px; padding-bottom: 96px; display: grid; grid-template-columns: 1fr 310px; align-items: center; gap: 76px; }
-.section-kicker, .card-label { color: var(--accent); font-size: .72rem; text-transform: uppercase; letter-spacing: .16em; font-weight: 600; }
+.section-kicker { color: var(--accent); font-size: .72rem; text-transform: uppercase; letter-spacing: .16em; font-weight: 600; }
 h1, h2 { font-family: var(--serif); font-weight: 400; line-height: 1.04; margin: 18px 0 24px; }
 h1 { font-size: clamp(3.4rem, 6vw, 6rem); letter-spacing: -.045em; text-wrap: balance; }
 h2 { font-size: clamp(2.5rem, 4vw, 4rem); letter-spacing: -.03em; }
@@ -104,15 +104,23 @@ em { color: var(--accent); font-style: italic; }
 @media (min-width: 761px) { .news-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } .news-item:nth-child(odd) { border-right: 1px dashed #e3e6e8; } .news-item:nth-child(odd):nth-last-child(-n+2), .news-item:nth-child(odd):nth-last-child(-n+2) ~ .news-item { border-bottom: 0; } } /* two per row; the last row has no rule below it */
 @media (max-width: 760px) { .news-strip { margin-bottom: 40px; } }
 @media (max-width: 975px) { .stat-item { flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px 18px; } .stat-icon { width: 40px; height: 40px; } .stat-icon svg { width: 20px; height: 20px; } }
-.hero-card { border: 1px solid #d8e7e4; border-left: 5px solid var(--accent); padding: 18px 18px 20px; background: linear-gradient(160deg, #fff 0%, #fff 40%, #eaf5f3 100%); border-radius: 18px; box-shadow: 0 24px 45px rgba(17,43,58,.07); } /* teal accent line and soft teal fade, after the IIT Indore lab profile card */
-.profile-photo { aspect-ratio: 272 / 310; margin-bottom: 30px; position: relative; overflow: hidden; background: linear-gradient(135deg, #1c2b38, #2a3d4e); display: grid; place-items: center; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); border-radius: 12px 12px 0 0; }
+.hero-card { align-self: stretch; display: flex; flex-direction: column; border: 1px solid #d8e7e4; border-left: 5px solid var(--accent); padding: 18px 18px 20px; background: linear-gradient(160deg, #fff 0%, #fff 40%, #eaf5f3 100%); border-radius: 18px; box-shadow: 0 24px 45px rgba(17,43,58,.07); } /* teal accent line and soft teal fade, after the IIT Indore lab profile card */
+.profile-photo { aspect-ratio: 272 / 310; margin-bottom: 18px; position: relative; overflow: hidden; background: linear-gradient(135deg, #1c2b38, #2a3d4e); display: grid; place-items: center; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); border-radius: 12px; }
 .profile-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 25%; filter: saturate(.96) contrast(1.02); position: relative; z-index: 1; }
 .photo-fallback { position: absolute; color: white; font-family: var(--serif); font-size: 5rem; line-height: 1; }
-.card-label { margin: 0 0 12px; }
-.role-badge { display: inline-block; margin: 0 0 16px; padding: 6px 16px; border: 1px solid #fbd5b0; border-radius: 999px; background: #fff3e6; color: #b8460f; font-size: .8rem; font-weight: 700; letter-spacing: .08em; line-height: 1.4; text-transform: uppercase; } /* pill badge, the one warm accent on the page */
+.role-badge { display: inline-block; margin: 0; padding: 6px 16px; border: 1px solid #fbd5b0; border-radius: 999px; background: #fff3e6; color: #b8460f; font-size: .8rem; font-weight: 700; letter-spacing: .08em; line-height: 1.4; text-transform: uppercase; } /* pill badge, the one warm accent on the page */
 .card-detail, .muted { color: var(--muted); font-size: .9rem; }
+.card-detail { margin: 14px 0 16px; line-height: 1.55; }
 .card-detail strong { color: var(--ink); font-weight: 700; }
-.hero-card a { display: inline-block; margin-top: 18px; color: var(--accent); font-size: .82rem; }
+.card-name { margin: 0 0 10px; color: var(--ink); font-family: var(--serif); font-size: 1.75rem; line-height: 1.15; letter-spacing: -.01em; } /* name under the photo, like the demo profile card */
+.card-inst { color: var(--ink); font-weight: 700; }
+.card-inst:hover, .card-contact a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.hero-card .role-badge { align-self: flex-start; } /* keep the pill its own width inside the flex card */
+.card-contacts { margin-top: auto; padding-top: 14px; border-top: 1px dashed #d5e0e2; } /* pinned to the card bottom, so the card spans tags → status like the left column */
+.card-contact { display: flex; align-items: center; gap: 9px; margin: 10px 0 0; color: var(--muted); font-size: .88rem; line-height: 1.4; }
+.card-contact:first-child { margin-top: 0; }
+.card-contact svg { flex: none; width: 16px; height: 16px; color: var(--accent); }
+.card-contact a { color: var(--accent); font-weight: 600; }
 .intro-band, .section-tinted { background: linear-gradient(180deg, #eaf2f1 0%, #e6efee 100%); }
 .intro-band { scroll-margin-top: 40px; padding: 76px 0; border-top: 1px solid rgba(17,43,58,.04); border-bottom: 1px solid rgba(17,43,58,.04); }
 .intro-grid, .talk-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; }
@@ -121,7 +129,7 @@ em { color: var(--accent); font-style: italic; }
 .intro-text a { color: var(--blue); }
 .intro-text a strong { color: inherit; }
 .intro-text a:hover { text-decoration: underline; text-underline-offset: 3px; }
-.intro-grid { grid-template-columns: 2fr 1fr; grid-template-areas: "kicker kicker" "body card" "fig-a fig-b" "featured featured"; column-gap: 32px; row-gap: 22px; }
+.intro-grid { grid-template-columns: 2fr 1fr; grid-template-areas: "kicker kicker" "body card" "bio bio" "fig-a fig-b" "featured featured"; column-gap: 32px; row-gap: 22px; }
 .intro-heading { grid-area: kicker; margin-bottom: 20px; }
 .intro-heading h2 { margin: 12px 0 0; }
 .info-card { display: flex; flex-direction: column; background: #fff; border: 1px solid #e6e9eb; border-radius: 6px; box-shadow: 0 2px 8px rgba(17,43,58,.08); overflow: hidden; }
@@ -139,6 +147,11 @@ em { color: var(--accent); font-style: italic; }
 .about-scroll { padding: 20px 28px 24px; }
 .intro-body .intro-text { max-width: none; margin: 0; font-size: clamp(1rem, 1.35vw, 1.1rem); }
 .interest-card { grid-area: card; }
+.bio-card { grid-area: bio; } /* short third-person bio for talk announcements, full width under About me + Research interests */
+.copy-bio { margin-left: auto; padding: 5px 12px; border: 1px solid rgba(15,111,104,.28); border-radius: 7px; background: #fff; color: var(--accent); font: inherit; font-size: .76rem; font-weight: 600; letter-spacing: 0; text-transform: none; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.copy-bio:hover, .copy-bio:focus-visible, .copy-bio.is-done { border-color: var(--accent); background: var(--accent); color: #fff; outline: none; }
+.bio-text { margin: 0; padding: 18px 28px 22px; color: var(--muted); font-size: 1rem; line-height: 1.75; }
+@media (max-width: 760px) { .bio-text { padding: 16px 20px 20px; font-size: .95rem; } }
 .figure-card { margin: 10px 0 0; }
 .figure-a { grid-area: fig-a; }
 .figure-b { grid-area: fig-b; }
@@ -360,7 +373,7 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 .site-footer .profile-icon::after { background: #74d3c6; color: #17232e; }
 .site-footer .profile-icon::before { border-top-color: #74d3c6; }
 .footer-bottom { border-top: 1px solid #34495a; display: flex; justify-content: space-between; margin-top: 90px; padding-top: 20px; color: #8d9fab; font-size: .72rem; }
-@media (max-width: 760px) { .container { width: min(100% - 40px, 560px); } .hero { min-height: auto; padding-top: 72px; padding-bottom: 72px; display: block; } h1 { font-size: 4.4rem; } .stats-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 12px; } .hero-card { width: min(100%, 360px); margin: 70px 0 0 auto; } .intro-grid, .talk-grid, .two-column, .footer-grid, .card-grid { grid-template-columns: 1fr; gap: 28px; } .path-grid { grid-template-columns: 1fr; } .section { padding-top: 78px; padding-bottom: 78px; } .intro-band { padding: 58px 0; } .intro-grid { grid-template-areas: "kicker" "body" "card" "fig-a" "fig-b" "featured"; gap: 22px; } .figure-card { margin-top: 0; } .intro-body, .cv-scroll-card { contain: none; } .card-scroll { overflow: visible; } .about-scroll { padding: 18px 20px 22px; } .collaborator-grid { grid-template-columns: 1fr; } .talk-section .talk-grid { grid-template-areas: "map" "places" "supervisor" "coauthors"; row-gap: 28px; } .talk-section .collab-map, .collab-places { margin-top: 0; } .talk-section .collab-map { border: 0; } .talk-section .collab-places .collab-legend { align-content: start; gap: 10px; } .talk-grid .collaborators-label { margin-top: 28px; } .pub-group { padding: 16px 18px 4px; } .pub-list li { font-size: .9rem; } .path-list li { grid-template-columns: 1fr; gap: 4px; } .footer-contact { padding-top: 0; } .footer-bottom { display: block; margin-top: 60px; } .footer-bottom span + span { display: block; margin-top: 8px; } }
+@media (max-width: 760px) { .container { width: min(100% - 40px, 560px); } .hero { min-height: auto; padding-top: 72px; padding-bottom: 72px; display: block; } h1 { font-size: 4.4rem; } .stats-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 12px; } .hero-card { width: min(100%, 360px); margin: 70px 0 0 auto; } .intro-grid, .talk-grid, .two-column, .footer-grid, .card-grid { grid-template-columns: 1fr; gap: 28px; } .path-grid { grid-template-columns: 1fr; } .section { padding-top: 78px; padding-bottom: 78px; } .intro-band { padding: 58px 0; } .intro-grid { grid-template-areas: "kicker" "body" "card" "bio" "fig-a" "fig-b" "featured"; gap: 22px; } .figure-card { margin-top: 0; } .intro-body, .cv-scroll-card { contain: none; } .card-scroll { overflow: visible; } .about-scroll { padding: 18px 20px 22px; } .collaborator-grid { grid-template-columns: 1fr; } .talk-section .talk-grid { grid-template-areas: "map" "places" "supervisor" "coauthors"; row-gap: 28px; } .talk-section .collab-map, .collab-places { margin-top: 0; } .talk-section .collab-map { border: 0; } .talk-section .collab-places .collab-legend { align-content: start; gap: 10px; } .talk-grid .collaborators-label { margin-top: 28px; } .pub-group { padding: 16px 18px 4px; } .pub-list li { font-size: .9rem; } .path-list li { grid-template-columns: 1fr; gap: 4px; } .footer-contact { padding-top: 0; } .footer-bottom { display: block; margin-top: 60px; } .footer-bottom span + span { display: block; margin-top: 8px; } }
 /* Night mode: html[data-theme="dark"], set by the header button (script.js) and remembered per visitor */
 [data-theme="dark"] { color-scheme: dark; --ink: #e3e8eb; --muted: #9eafb8; --navy: #dbe5ea; --accent: #74d3c6; --blue: #94b8ea; --paper: #0f1b24; --tint: #142330; --line: #2b3c47; --card: #15242f; --card-line: #243541; --dash: #2a3a45; --hover: #1b2c38; }
 [data-theme="dark"] body { background: linear-gradient(180deg, #111d27 0%, #0c151d 100%); }
@@ -416,3 +429,6 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 [data-theme="dark"] .lightbox { background: var(--card); }
 [data-theme="dark"] .lightbox-btn { color: #112b3a; }
 [data-theme="dark"] .lightbox-btn:hover, [data-theme="dark"] .lightbox-btn:focus-visible { color: #0f6f68; }
+[data-theme="dark"] .copy-bio { background: var(--card); border-color: rgba(116,211,198,.35); }
+[data-theme="dark"] .copy-bio:hover, [data-theme="dark"] .copy-bio:focus-visible, [data-theme="dark"] .copy-bio.is-done { background: var(--accent); color: #0e2a27; }
+[data-theme="dark"] .card-contacts { border-top-color: var(--line); }

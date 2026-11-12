@@ -108,6 +108,45 @@ if (profileImage) {
   });
 }
 
+// "Copy bio" in the hero: copies the short bio; if the clipboard is blocked, selects the text instead.
+document.querySelectorAll('.copy-bio').forEach((button) => {
+  const label = button.textContent;
+  button.addEventListener('click', async () => {
+    const source = document.querySelector(button.dataset.copy);
+    if (!source) return;
+    const text = source.textContent.replace(/\s+/g, ' ').trim();
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(text);
+      copied = true;
+    } catch (error) {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.select();
+      try { copied = document.execCommand('copy'); } catch (error2) { copied = false; }
+      area.remove();
+    }
+    if (!copied) {
+      const range = document.createRange();
+      range.selectNodeContents(source);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+    button.textContent = copied ? 'Copied ✓' : 'Selected: press ⌘C';
+    button.classList.toggle('is-done', copied);
+    clearTimeout(button.resetTimer);
+    button.resetTimer = setTimeout(() => {
+      button.textContent = label;
+      button.classList.remove('is-done');
+    }, 1800);
+  });
+});
+
 const collabSection = document.querySelector('.talk-section');
 if (collabSection) {
   let lastPointerType = 'mouse';
