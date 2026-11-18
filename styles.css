@@ -175,7 +175,7 @@ em { color: var(--accent); font-style: italic; }
 .figure-card img { display: block; width: 100%; height: auto; padding: 10px 0 2px; box-sizing: border-box; background: #fff; }
 .figure-note { margin: 0; padding: 0 22px 16px; color: var(--muted); font-size: .82rem; line-height: 1.5; }
 .interest-list { list-style: none; margin: 0; padding: 0; flex: 1; display: flex; flex-direction: column; }
-.interest-list li { display: flex; align-items: center; padding: 15px 22px; border-bottom: 1px dashed #e3e6e8; color: var(--ink); font-size: 1rem; font-weight: 600; line-height: 1.4; transition: background .2s ease, box-shadow .2s ease; }
+.interest-list li { display: flex; align-items: center; padding: 15px 22px; border-bottom: 1px dashed #e3e6e8; color: var(--ink); font-size: 1rem; font-weight: 600; line-height: 1.4; transition: background .2s ease, box-shadow .2s ease, padding-left .2s ease; }
 .interest-list li:last-child { border-bottom: 0; }
 .interest-list li:hover { background: #fafbfc; box-shadow: inset 3px 0 0 var(--accent); }
 .muted { font-size: .95rem; line-height: 1.7; }
@@ -276,19 +276,21 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 760px) { .cv-list-split { grid-template-columns: 1fr; } .cv-list-split .cv-item + .cv-item { border-left: 0; border-top: 1px dashed #e3e6e8; } }
 .cv-scroll-card { contain: size; } /* the neighbouring card sets the row height; this one scrolls inside */
 .cv-list { list-style: none; margin: 0; padding: 0; }
-.cv-item { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 16px 22px; border-bottom: 1px dashed #e3e6e8; transition: background .2s ease, box-shadow .2s ease; }
+.cv-item { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 16px 22px; border-bottom: 1px dashed #e3e6e8; transition: background .2s ease, box-shadow .2s ease, padding-left .2s ease; }
 .cv-item:last-child { border-bottom: 0; }
 .cv-item:hover { background: #fafbfc; box-shadow: inset 3px 0 0 var(--accent); }
+@media (hover: hover) { .cv-list:not(.cv-timeline) > .cv-item:hover, .interest-list li:hover { padding-left: 13px; } } /* on hover the row slides a little left toward its teal line, like the IIT Indore lab profile lists; the date badge stays put; not on the Experience timeline (fixed dots) or touch screens */
 .cv-title { margin: 0; color: var(--ink); font-size: 1rem; font-weight: 600; line-height: 1.35; }
 .cv-meta { margin: 4px 0 0; color: var(--muted); font-size: .86rem; line-height: 1.45; }
-.date-badge { flex: none; padding: 3px 10px; border-radius: 999px; background: #e1f1ee; color: var(--accent); font-size: .75rem; font-weight: 600; line-height: 1.5; white-space: nowrap; }
+.date-badge { flex: none; padding: 3px 10px; border-radius: 999px; background: #e1f1ee; color: var(--accent); font-size: .75rem; font-weight: 600; line-height: 1.5; white-space: nowrap; transition: background .2s ease, color .2s ease, box-shadow .2s ease; }
+.cv-item:hover .date-badge, .cv-item:focus-within .date-badge, .cv-item.is-active .date-badge { background: #fff3e6; box-shadow: inset 0 0 0 1px #fbd5b0; color: #b8460f; } /* on hover (or tap) the row's date turns into the orange pill of the AIR ranks, like the orange hover in the header menu */
 .cv-icon-item { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; column-gap: 14px; }
 .cv-icon { width: 20px; height: 20px; margin-top: 1px; color: var(--accent); }
 .cv-logo-item { grid-template-columns: 44px minmax(0, 1fr) auto; }
 .cv-logo { width: 44px; height: 44px; margin-top: 0; padding: 4px; box-sizing: border-box; border: 1px solid #e6e9eb; border-radius: 8px; background: #fff; object-fit: contain; }
-.rank-badge { font-family: var(--serif); color: var(--accent); font-size: 1.6rem; line-height: 1; white-space: nowrap; }
-.rank-badge small { font-family: var(--sans); font-size: .62rem; font-weight: 600; letter-spacing: .14em; vertical-align: middle; margin-right: 2px; }
-.rank-badge abbr { text-decoration: none; }
+.rank-badge { flex: none; padding: 3px 10px; border-radius: 999px; background: #fff3e6; box-shadow: inset 0 0 0 1px #fbd5b0; color: #b8460f; font-size: .75rem; font-weight: 700; line-height: 1.5; white-space: nowrap; } /* rounded pill like the date badges, in the orange of the role badge */
+.rank-badge small { font-size: .68rem; font-weight: 600; letter-spacing: .08em; margin-right: 1px; }
+.rank-badge abbr { text-decoration: none; } /* AIR ranks in the warm orange of the role badge, so they stand out from the teal like NET-JRF on the lab profile page */
 .cv-timeline .cv-item { position: relative; padding-left: 62px; border-bottom: 0; }
 .cv-timeline .cv-item:hover { box-shadow: none; }
 .cv-timeline .cv-item::before { content: ''; position: absolute; left: 28px; top: 21px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; box-shadow: 0 0 0 2px var(--accent); box-sizing: border-box; z-index: 1; }
@@ -321,7 +323,8 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 .collaborator > :not(.collab-initials) { grid-column: 2; }
 .collab-initials { grid-row: span 2; align-self: center; display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid var(--band-box-line); border-radius: 50%; background: var(--band-circle); color: var(--band-accent); font-size: .82rem; font-weight: 700; letter-spacing: .01em; line-height: 1; transition: background .2s ease, border-color .2s ease, color .2s ease; } /* like the profile icons */
 .collaborator:hover, .collaborator.is-active { border-color: var(--band-accent); transform: translateY(-2px); }
-.collaborator:hover .collab-initials, .collaborator.is-active .collab-initials { background: var(--band-accent); border-color: var(--band-accent); color: var(--band-on-accent); }
+.talk-section { --band-hot-bg: #fff3e6; --band-hot-line: #fbd5b0; --band-hot-text: #b8460f; --band-row-hover: rgba(255,255,255,.75); } /* orange = hover colour, as in the header menu and the date badges */
+.collaborator:hover .collab-initials, .collaborator.is-active .collab-initials { background: var(--band-hot-bg); border-color: var(--band-hot-line); color: var(--band-hot-text); } /* on hover the initials circle takes the light-orange look of the AIR rank pills (not a solid fill) */
 .collaborator h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; line-height: 1.2; margin: 0 0 2px; color: var(--band-accent); } /* names in teal, like the box outline and initials */
 .collaborator .institution-link span { color: var(--band-accent); }
 .collaborator .institution-link:hover { color: var(--band-accent); }
@@ -331,6 +334,8 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 .talk-section .collab-places { padding: 26px 0 20px; }
 .talk-section .collab-places .collab-legend { flex: 1; align-content: space-between; padding: 0; border: 0; }
 .talk-section .collab-places .collab-legend li { font-size: 1.15rem; font-weight: 600; gap: 12px; }
+.talk-section .collab-places .collab-legend li { margin-left: -14px; padding: 6px 12px 6px 14px; border-radius: 0 8px 8px 0; transition: opacity .25s ease, background .2s ease, box-shadow .2s ease, padding-left .2s ease; } /* the negative margin keeps the names where they were at rest */
+.talk-section .collab-places .collab-legend li.is-active { padding-left: 6px; background: var(--band-row-hover); box-shadow: inset 3px 0 0 var(--band-accent); } /* hovered/linked country slides left with a teal line, like the card rows */
 .talk-section .collab-places .collab-legend em { font-size: .88rem; }
 .talk-section .collab-places .legend-dot { width: 10px; height: 10px; }
 .talk-section .collab-map { grid-area: map; margin: 0; }
@@ -432,3 +437,6 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 [data-theme="dark"] .copy-bio { background: var(--card); border-color: rgba(116,211,198,.35); }
 [data-theme="dark"] .copy-bio:hover, [data-theme="dark"] .copy-bio:focus-visible, [data-theme="dark"] .copy-bio.is-done { background: var(--accent); color: #0e2a27; }
 [data-theme="dark"] .card-contacts { border-top-color: var(--line); }
+[data-theme="dark"] .rank-badge { background: rgba(246,169,111,.12); box-shadow: inset 0 0 0 1px rgba(246,169,111,.35); color: #f6a96f; }
+[data-theme="dark"] .cv-item:hover .date-badge, [data-theme="dark"] .cv-item:focus-within .date-badge, [data-theme="dark"] .cv-item.is-active .date-badge { background: rgba(246,169,111,.12); box-shadow: inset 0 0 0 1px rgba(246,169,111,.35); color: #f6a96f; }
+[data-theme="dark"] .talk-section { --band-hot-bg: rgba(246,169,111,.12); --band-hot-line: rgba(246,169,111,.35); --band-hot-text: #f6a96f; --band-row-hover: rgba(255,255,255,.06); }
