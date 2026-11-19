@@ -223,6 +223,22 @@ if (timeline) {
   });
 }
 
+// Lists: a mouse hover slides a row toward its teal line via CSS; touch has no hover, so a tap marks the row instead (tap it again, or another row, to move the mark).
+const tapRows = '.cv-list:not(.cv-timeline) > .cv-item, .interest-list li';
+document.querySelectorAll('.cv-list:not(.cv-timeline), .interest-list').forEach((list) => {
+  let lastPointerType = 'mouse';
+  list.addEventListener('pointerdown', (event) => {
+    lastPointerType = event.pointerType;
+  });
+  list.addEventListener('click', (event) => {
+    if (lastPointerType !== 'touch') return;
+    const row = event.target.closest(tapRows);
+    document.querySelectorAll(tapRows).forEach((node) => {
+      node.classList.toggle('is-active', node === row && !node.classList.contains('is-active'));
+    });
+  });
+});
+
 const lightbox = document.querySelector('.lightbox');
 const galleryItems = [...document.querySelectorAll('.gal-item')];
 if (lightbox && galleryItems.length && typeof lightbox.showModal === 'function') {
