@@ -265,6 +265,8 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 .journal img { display: block; width: 92px; height: 132px; object-fit: cover; border-radius: 5px; box-shadow: 0 6px 14px rgba(17,43,58,.18); transition: transform .2s ease, box-shadow .2s ease; }
 .journal:hover img, .journal:focus-visible img { transform: translateY(-3px); box-shadow: 0 12px 22px rgba(17,43,58,.24); }
 @media (max-width: 760px) { .section-intro { grid-template-columns: 1fr; } .section-lede { justify-self: start; } }
+.section-intro { padding: 30px 34px; border: 1px solid #d8e7e4; border-left: 3px solid var(--accent); border-radius: 18px; background: linear-gradient(160deg, #fff 0%, #fff 55%, #f1f8f7 100%); box-shadow: 0 12px 30px rgba(17,43,58,.06); } /* each section's heading row (kicker, title, intro box) sits in one long card with the teal left line of the content cards */
+@media (max-width: 760px) { .section-intro { padding: 22px 20px; } }
 .section-note { color: var(--muted); max-width: 260px; font-size: .9rem; margin: 0 0 12px; }
 .event-label { color: var(--accent); font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; font-weight: 600; margin: 0 0 18px; }
 .two-column { display: grid; grid-template-columns: 1fr 1.4fr; gap: 90px; align-items: start; }
@@ -472,3 +474,4 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 [data-theme="dark"] .talk-section .collab-card .collab-sub { background: rgba(255,255,255,.02); border-color: var(--card-line); }
 [data-theme="dark"] .talk-grid .collab-sub-title { background: transparent; border-bottom-color: var(--card-line); }
 [data-theme="dark"] .gallery-card .gal-item { border-left-color: var(--card-line); }
+[data-theme="dark"] .section-intro { background: linear-gradient(160deg, #13212b 0%, #13212b 55%, #12282b 100%); border-color: rgba(255,255,255,.06); border-left-color: var(--accent); box-shadow: 0 12px 30px rgba(0,0,0,.25); }
