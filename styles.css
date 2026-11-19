@@ -46,7 +46,7 @@ h1 { font-size: clamp(3.4rem, 6vw, 6rem); letter-spacing: -.045em; text-wrap: ba
 h2 { font-size: clamp(2.5rem, 4vw, 4rem); letter-spacing: -.03em; }
 h2.one-line em { white-space: nowrap; } /* on narrow screens, break before the italic phrase */
 em { color: var(--accent); font-style: italic; }
-.lead { max-width: 560px; padding: 14px 20px; border: 1px solid rgba(15,111,104,.28); border-radius: 14px; background: #fff; box-shadow: 0 2px 6px rgba(17,43,58,.06); font-size: 1.12rem; line-height: 1.65; color: #46525b; } /* boxed like the research pills above */
+.lead { width: 0; min-width: 100%; padding: 14px 20px; border: 1px solid rgba(15,111,104,.28); border-radius: 14px; background: #fff; box-shadow: 0 2px 6px rgba(17,43,58,.06); font-size: 1.12rem; line-height: 1.65; color: #46525b; } /* boxed like the research pills above, and exactly as wide as their row (width 0 + min-width 100%: it takes the column's width without widening it) */
 .lead-em { color: var(--accent); font-weight: 600; }
 .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; } /* research areas as pills, like the buttons below */
 .hero-tags li { padding: 5px 12px; border: 1px solid rgba(15,111,104,.28); border-radius: 999px; background: #fff; color: var(--accent); font-size: .7rem; font-weight: 700; letter-spacing: .1em; line-height: 1.4; text-transform: uppercase; }
@@ -55,8 +55,8 @@ em { color: var(--accent); font-style: italic; }
 .status-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: status-pulse 2.2s ease-out infinite; }
 @keyframes status-pulse { 0% { box-shadow: 0 0 0 0 rgba(15,111,104,.45); } 70% { box-shadow: 0 0 0 9px rgba(15,111,104,0); } 100% { box-shadow: 0 0 0 0 rgba(15,111,104,0); } }
 @media (prefers-reduced-motion: reduce) { .status-dot { animation: none; } }
-.hero-actions { display: inline-grid; max-width: 100%; } /* the button row sets the width; the icons spread across it */
-.hero-profiles { display: flex; justify-content: space-between; gap: 12px; margin: 28px 0 0; }
+.hero-main { display: flex; align-items: stretch; gap: 28px; min-width: 0; } /* the vertical icon card, then the text column */
+.hero-rail { position: relative; z-index: 2; flex: none; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 11px; border: 1px solid #d8e7e4; border-left: 3px solid var(--accent); border-radius: 16px; background: linear-gradient(180deg, #fff 0%, #fff 40%, #eaf5f3 100%); box-shadow: 0 12px 30px rgba(17,43,58,.06); } /* thin card with the profile + email circles, spread from the research pills down to the status pill */
 .profile-icon { position: relative; display: inline-grid; place-items: center; width: 42px; height: 42px; border: 1px solid rgba(15,111,104,.28); border-radius: 50%; background: #fff; color: var(--accent); box-shadow: 0 2px 6px rgba(17,43,58,.06); transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease; }
 .profile-icon svg { width: 19px; height: 19px; }
 .profile-icon svg[viewBox="0 0 448 512"] { width: 15px; height: 15px; }
@@ -67,11 +67,12 @@ em { color: var(--accent); font-style: italic; }
 .profile-icon::before { content: ''; position: absolute; top: -10px; left: 50%; margin-left: -6px; border: 6px solid transparent; border-top-color: var(--navy); opacity: 0; pointer-events: none; transition: opacity .15s ease; }
 .profile-icon:hover::after, .profile-icon:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
 .profile-icon:hover::before, .profile-icon:focus-visible::before { opacity: 1; }
-.hero-links { gap: 16px; margin-top: 34px; flex-wrap: wrap; }
-.hero-copy { max-width: 640px; }
+@media (min-width: 941px) { .hero-rail .profile-icon::after { top: 50%; bottom: auto; left: calc(100% + 12px); transform: translate(4px, -50%); } .hero-rail .profile-icon::before { top: 50%; left: 100%; margin: -6px 0 0; border-top-color: transparent; border-right-color: var(--navy); } .hero-rail .profile-icon:hover::after, .hero-rail .profile-icon:focus-visible::after { transform: translate(0, -50%); } } /* in the vertical card the name shows to the right */
+.hero-links { gap: 16px; margin-top: 28px; flex-wrap: wrap; }
+.hero-copy { flex: 0 1 auto; width: max-content; max-width: 100%; min-width: 0; } /* the research-pill row sets the column width */
 .button { padding: 12px 18px; font-size: .82rem; border: 1px solid transparent; display: inline-flex; align-items: center; justify-content: center; transition: all .2s ease; }
 .button-outline { gap: 6px; border-color: rgba(15,111,104,.28); border-radius: 8px; background: #fff; color: var(--accent); font-weight: 500; box-shadow: 0 2px 6px rgba(17,43,58,.06); } /* styled like the profile icons above */
-@media (max-width: 479px) { .hero-actions { display: grid; } .hero-links { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } .hero-links .button:first-child { grid-column: 1 / -1; } } /* phones: one wide box, then two side by side */
+@media (max-width: 479px) { .hero-links { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } .hero-links .button:first-child { grid-column: 1 / -1; } } /* phones: one wide box, then two side by side */
 .button-outline:hover, .button-outline:focus-visible { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-2px); outline: none; }
 .text-link { border-bottom: 1px solid currentColor; padding-bottom: 2px; color: var(--navy); font-size: .82rem; }
 .stats-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: -24px; margin-bottom: 20px; position: relative; z-index: 1; }
@@ -121,6 +122,10 @@ em { color: var(--accent); font-style: italic; }
 .card-contact:first-child { margin-top: 0; }
 .card-contact svg { flex: none; width: 16px; height: 16px; color: var(--accent); }
 .card-contact a { color: var(--accent); font-weight: 600; }
+@media (min-width: 761px) { .hero { min-height: 0; margin-top: 64px; margin-bottom: 72px; padding: 32px 34px; border: 1px solid #d8e7e4; border-radius: 22px; background: linear-gradient(160deg, #fff 0%, #fff 55%, #f1f8f7 100%); box-shadow: 0 24px 50px rgba(17,43,58,.07); } .hero-card { box-shadow: 0 12px 30px rgba(17,43,58,.07); } .card-detail { margin-bottom: 8px; } .card-contacts { padding-top: 10px; } .hero-main { align-self: stretch; } .hero-copy { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; } .hero-copy .lead { margin: 0; } } /* laptops: the whole top section sits in one card with a plain edge (only the icon card and photo card carry teal lines); the text column spreads to the photo card's height, so all three line up top and bottom */
+@media (min-width: 761px) and (max-width: 1000px) { .hero { gap: 32px; padding: 26px 24px; } .hero-main { gap: 20px; } } /* tablets: tighter gaps so the text column keeps its width */
+@media (min-width: 761px) and (max-width: 940px) { .hero-main { flex-direction: column; gap: 0; } .hero-rail { order: 2; flex-direction: row; align-self: flex-start; margin-top: 24px; padding: 10px 14px; } } /* narrow tablets (iPad portrait): the icon card turns sideways under the status pill, as on phones */
+@media (max-width: 760px) { .hero-main { flex-direction: column; gap: 0; } .hero-rail { order: 2; flex-direction: row; align-self: flex-start; width: 100%; max-width: 400px; margin-top: 24px; padding: 10px 14px; } } /* phones: no outer card; the icon card turns sideways under the status pill */
 .intro-band, .section-tinted { background: linear-gradient(180deg, #eaf2f1 0%, #e6efee 100%); }
 .intro-band { scroll-margin-top: 40px; padding: 76px 0; border-top: 1px solid rgba(17,43,58,.04); border-bottom: 1px solid rgba(17,43,58,.04); }
 .intro-grid, .talk-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; }
@@ -364,7 +369,7 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 .talk-section.has-active .collab-map .cm-a.is-active { stroke-opacity: 1; }
 .collaborator-affiliation { color: var(--band-text); font-size: .85rem; line-height: 1.45; }
 .collaborator-topic { color: var(--band-accent); font-size: .78rem; line-height: 1.45; }
-.lead, .hero-tags li, .hero-profiles .profile-icon, .button-outline, .stat-item, .section-lede, .info-card, .gal-item, .collaborator { border-left: 3px solid var(--accent); } /* thin teal edge on every box, echoing the hero card's 5px one; placed after the boxes' own border rules */
+.lead, .hero-tags li, .hero-rail .profile-icon, .button-outline, .stat-item, .section-lede, .info-card, .gal-item, .collaborator { border-left: 3px solid var(--accent); } /* thin teal edge on every box, echoing the hero card's 5px one; placed after the boxes' own border rules */
 .site-footer { background: #17232e; color: white; padding: 100px 0 28px; }
 .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
 .footer-grid h2 { color: white; }
@@ -403,9 +408,12 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 @keyframes status-pulse-dark { 0% { box-shadow: 0 0 0 0 rgba(116,211,198,.45); } 70% { box-shadow: 0 0 0 9px rgba(116,211,198,0); } 100% { box-shadow: 0 0 0 0 rgba(116,211,198,0); } }
 [data-theme="dark"] .profile-icon { background: var(--card); border-color: rgba(116,211,198,.35); box-shadow: none; }
 [data-theme="dark"] .profile-icon:hover, [data-theme="dark"] .profile-icon:focus-visible { color: #0e2a27; }
-[data-theme="dark"] .hero-tags li, [data-theme="dark"] .hero-profiles .profile-icon { border-left-color: var(--accent); } /* the skill pills and footer icons keep their plain ring */
+[data-theme="dark"] .hero-tags li, [data-theme="dark"] .hero-rail .profile-icon { border-left-color: var(--accent); } /* the skill pills and footer icons keep their plain ring */
 [data-theme="dark"] .profile-icon::after { background: #74d3c6; color: #0e2a27; }
 [data-theme="dark"] .profile-icon::before { border-top-color: #74d3c6; }
+@media (min-width: 941px) { [data-theme="dark"] .hero-rail .profile-icon::before { border-top-color: transparent; border-right-color: #74d3c6; } }
+@media (min-width: 761px) { [data-theme="dark"] .hero { background: linear-gradient(160deg, #13212b 0%, #13212b 55%, #12282b 100%); border-color: rgba(255,255,255,.06); box-shadow: 0 24px 50px rgba(0,0,0,.25); } }
+[data-theme="dark"] .hero-rail { background: linear-gradient(180deg, #15242f 0%, #15242f 40%, #143233 100%); border-color: rgba(255,255,255,.06); border-left-color: var(--accent); box-shadow: 0 12px 30px rgba(0,0,0,.25); }
 [data-theme="dark"] .button-outline { background: var(--card); border-color: rgba(116,211,198,.35); border-left-color: var(--accent); box-shadow: none; }
 [data-theme="dark"] .button-outline:hover, [data-theme="dark"] .button-outline:focus-visible { color: #0e2a27; }
 [data-theme="dark"] .hero-card { background: linear-gradient(160deg, #15242f 0%, #15242f 40%, #143233 100%); border-color: rgba(255,255,255,.06); border-left-color: var(--accent); box-shadow: 0 24px 45px rgba(0,0,0,.25); }
