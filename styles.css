@@ -227,6 +227,10 @@ html:has(.lightbox[open]) { overflow: hidden; }
 .lightbox-text p { margin: 0 0 10px; color: var(--muted); font-size: .9rem; line-height: 1.65; }
 @media (max-width: 975px) { .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .gallery-grid.is-collapsed .gal-item:nth-child(n+7) { display: none; } } /* 3 rows of 2 */
 @media (max-width: 479px) { .gallery-grid { gap: 14px; } .gal-item figcaption { padding: 10px 12px 12px; } .gal-title { font-size: .86rem; } .gal-meta { font-size: .74rem; } .lightbox-caption { padding: 14px 16px 16px; } .lightbox-btn { width: 38px; height: 38px; } }
+.gallery-card .gallery-grid { gap: 20px; padding: 22px; } /* the photos sit inside one card, like Publications and Collaborations */
+.gallery-card .gal-item { border-left: 1px solid #e6e9eb; box-shadow: 0 1px 4px rgba(17,43,58,.06); } /* plain edges inside the card, so the card's own teal line is the only one */
+.gallery-card .gallery-more { margin: 0; padding: 4px 22px 24px; }
+@media (max-width: 479px) { .gallery-card .gallery-grid { gap: 12px; padding: 14px; } .gallery-card .gallery-more { padding: 2px 14px 18px; } }
 .timeline h3 { font-weight: 500; margin: 10px 0 7px; font-size: 1.05rem; }
 .talk-grid p { color: var(--muted); font-size: .9rem; margin: 0; }
 .pub-group { padding: 20px 28px 6px; }
@@ -467,3 +471,4 @@ a.pub-venue:hover { text-decoration: underline; text-underline-offset: 3px; }
 [data-theme="dark"] .talk-section { --band-hot-bg: rgba(246,169,111,.12); --band-hot-line: rgba(246,169,111,.35); --band-hot-text: #f6a96f; --band-row-hover: rgba(255,255,255,.06); }
 [data-theme="dark"] .talk-section .collab-card .collab-sub { background: rgba(255,255,255,.02); border-color: var(--card-line); }
 [data-theme="dark"] .talk-grid .collab-sub-title { background: transparent; border-bottom-color: var(--card-line); }
+[data-theme="dark"] .gallery-card .gal-item { border-left-color: var(--card-line); }
